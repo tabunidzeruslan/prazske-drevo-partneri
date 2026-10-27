@@ -28,7 +28,7 @@
   <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/img/hero.webp" imagesrcset="assets/img/hero-760.webp 760w, assets/img/hero-1200.webp 1200w, assets/img/hero.webp 1920w" imagesizes="(min-width: 1200px) 1160px, calc(100vw - 40px)" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
   <script>document.documentElement.classList.add("js")</script>
 
   <script type="application/ld+json">
@@ -122,33 +122,41 @@
           <p class="section__lead">Les nekupujeme. Zůstává vám a&nbsp;my se o&nbsp;něj postaráme: od těžby přes platbu za dřevo až po úklid.</p>
         </header>
 
-        <div class="bento">
-          <article class="tile tile--dark tile--tall reveal">
-            <img class="tile__bg" src="assets/img/sunny-forest-800.webp" srcset="assets/img/sunny-forest-800.webp 800w, assets/img/sunny-forest.webp 1600w" sizes="(min-width: 960px) 380px, 100vw" width="800" height="534" loading="lazy" decoding="async" alt="">
-            <div>
+        <div class="svc">
+          <article class="svc-feature reveal">
+            <img class="svc-feature__bg" src="assets/img/sunny-forest-800.webp" srcset="assets/img/sunny-forest-800.webp 800w, assets/img/sunny-forest.webp 1600w" sizes="(min-width: 960px) 580px, 100vw" width="800" height="534" loading="lazy" decoding="async" alt="Slunečný jehličnatý les">
+            <div class="svc-feature__body">
               <h3>Převezmeme péči o&nbsp;váš les</h3>
               <p>Les můžete svěřit do naší péče. Staráme se o&nbsp;něj dlouhodobě, ne jen jednorázově.</p>
             </div>
           </article>
-          <article class="tile tile--dark tile--img reveal">
-            <img class="tile__bg" src="assets/img/timber-pile.webp?v=2" width="800" height="534" loading="lazy" decoding="async" alt="">
-            <h3>Za dřevo vám zaplatíme</h3>
-            <p>Za vytěženou dřevní hmotu dostanete férovou platbu. Podrobnosti s&nbsp;vámi probere náš nákupčí.</p>
+
+          <article class="svc-card reveal">
+            <div class="svc-card__media"><img src="assets/img/timber-pile.webp?v=2" width="800" height="534" loading="lazy" decoding="async" alt="Světlé kmeny srovnané u lesa"></div>
+            <div class="svc-card__body">
+              <h3>Za dřevo vám zaplatíme</h3>
+              <p>Za vytěženou dřevní hmotu dostanete férovou platbu. Podrobnosti s&nbsp;vámi probere náš nákupčí.</p>
+            </div>
           </article>
-          <article class="tile tile--dark tile--tall reveal">
-            <img class="tile__bg" src="assets/img/forwarder-800.webp" srcset="assets/img/forwarder-800.webp 800w, assets/img/forwarder.webp 1000w" sizes="(min-width: 960px) 380px, 100vw" width="800" height="533" loading="lazy" decoding="async" alt="">
-            <div>
+
+          <article class="svc-card reveal">
+            <div class="svc-card__media"><img src="assets/img/forwarder-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="Vyvážecí souprava na lesní cestě"></div>
+            <div class="svc-card__body">
               <h3>Těžba vlastní technikou</h3>
               <p>Veškeré práce v&nbsp;lese zajistíme sami: lidi, stroje i&nbsp;odvoz dřeva. Vy nemusíte nic řešit.</p>
             </div>
           </article>
-          <article class="tile tile--dark tile--img reveal">
-            <img class="tile__bg" src="assets/img/sunlit-forest.webp" width="800" height="600" loading="lazy" decoding="async" alt="">
-            <h3>Uklidíme po sobě</h3>
-            <p>Větve a&nbsp;klest zpracujeme nebo odvezeme, lesní cesty uvedeme do pořádku. Nepořádek po nás nezůstane.</p>
+
+          <article class="svc-card reveal">
+            <div class="svc-card__media"><img src="assets/img/sunlit-forest.webp" width="800" height="600" loading="lazy" decoding="async" alt="Čistý les prozářený sluncem"></div>
+            <div class="svc-card__body">
+              <h3>Uklidíme po sobě</h3>
+              <p>Větve a&nbsp;klest zpracujeme nebo odvezeme, lesní cesty uvedeme do pořádku. Nepořádek po nás nezůstane.</p>
+            </div>
           </article>
-          <article class="tile tile--green tile--wide reveal">
-            <span class="tile__icon"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+
+          <article class="svc-accent reveal">
+            <svg class="svc-accent__leaf" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></svg>
             <h3>Les pro další generace</h3>
             <p>Hospodaříme šetrně a&nbsp;s&nbsp;ohledem na obnovu lesa, aby váš les žil dál.</p>
           </article>
