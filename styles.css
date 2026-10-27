@@ -498,3 +498,5 @@ form button[type="submit"] { padding: 6px 20px; }
 .modal--done h2 { padding: 0; font-size: 1.5rem; }
 .modal--done p { font-size: 1.02rem; color: var(--muted); margin-bottom: 24px; }
 .modal--done .btn { min-width: 160px; }
+.footer__brand { display: inline-block; }
+.brand:hover .brand__logo, .footer__brand:hover .footer__logo { opacity: .85; }
