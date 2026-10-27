@@ -5,7 +5,7 @@ const PHONE_DISPLAY = "292 332 301";
 const PHONE_LINK = "tel:+420292332301";
 
 // ID pixelu z Meta Events Manager (jen čísla). Prázdné = pixel ani cookie lišta se nezobrazí.
-const META_PIXEL_ID = "";
+const META_PIXEL_ID = "944886735083640";
 
 (function () {
   "use strict";

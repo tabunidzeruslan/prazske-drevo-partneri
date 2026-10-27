@@ -574,3 +574,19 @@ body.has-cookie .mobile-bar, body.has-cookie .to-top { display: none; }
   .tile--wide { padding-block: 32px; }
 }
 @media (max-width: 640px) { .tile--wide h3, .tile--wide p { align-self: auto; } }
+
+/* ===== Calm middle tiles (no icons) ===== */
+.tile--tall > div { margin-top: auto; }
+.tile--soft {
+  background: #fff; border: 1px solid var(--line);
+  justify-content: flex-end; gap: 8px;
+}
+.tile--soft:hover { box-shadow: var(--shadow-sm); }
+.tile__tag {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: auto;
+  font: 600 .74rem/1 var(--font-body); text-transform: uppercase; letter-spacing: .12em; color: var(--green-text);
+}
+.tile__tag::before { content: ""; width: 22px; height: 2px; background: var(--lime); border-radius: 2px; }
+.tile--soft h3 { margin-top: 0; color: var(--teal); font-size: 1.3rem; }
+.tile--soft p { color: var(--muted); }
+@media (max-width: 600px) { .tile--soft { min-height: 200px; } }
