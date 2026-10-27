@@ -77,16 +77,16 @@ Git-репозиторий уже создан, первый коммит сде
 2. Слева **Workers & Pages → Create → вкладка Pages → Connect to Git**.
 3. Подключите GitHub, разрешите доступ к репозиторию `prazske-drevo-partneri` и выберите его.
 4. Настройки сборки:
-   - **Project name:** `prazske-drevo-partneri` (от него зависит адрес)
+   - **Project name:** `prazske-drevo-pro-partnery` (от него зависит адрес)
    - **Production branch:** `main`
    - **Framework preset:** `None`
    - **Build command:** оставить **пустым**
    - **Build output directory:** `/`
-5. **Save and Deploy**. Через минуту сайт будет на `https://prazske-drevo-partneri.pages.dev`.
+5. **Save and Deploy**. Через минуту сайт будет на `https://prazske-drevo-pro-partnery.pages.dev`.
 
 После этого каждый новый коммит в GitHub автоматически публикуется заново.
 
-> Если адрес получится другим (например, имя было занято), замените `https://prazske-drevo-partneri.pages.dev` в двух местах в `index.html` (строки с `og:image` и `twitter:image`) — иначе в Facebook не будет картинки-превью.
+> Если адрес получится другим (например, имя было занято), замените `https://prazske-drevo-pro-partnery.pages.dev` в двух местах в `index.html` (строки с `og:image` и `twitter:image`) — иначе в Facebook не будет картинки-превью.
 
 ---
 
@@ -94,7 +94,7 @@ Git-репозиторий уже создан, первый коммит сде
 
 1. Cloudflare → **Workers & Pages → ваш проект → Custom domains → Set up a custom domain**.
 2. Введите, например, `partneri.prazske-drevo.cz` (поддомен основного сайта — самый простой вариант).
-3. Cloudflare покажет DNS-запись (обычно `CNAME partneri → prazske-drevo-partneri.pages.dev`). Добавьте её у регистратора/хостинга, где управляется DNS домена `prazske-drevo.cz`. Если домен уже в Cloudflare — запись добавится сама.
+3. Cloudflare покажет DNS-запись (обычно `CNAME partneri → prazske-drevo-pro-partnery.pages.dev`). Добавьте её у регистратора/хостинга, где управляется DNS домена `prazske-drevo.cz`. Если домен уже в Cloudflare — запись добавится сама.
 4. Через 5–30 минут домен заработает с HTTPS.
 5. Обновите адрес в `og:image` / `twitter:image` в `index.html` на новый домен.
 
@@ -105,7 +105,7 @@ Git-репозиторий уже создан, первый коммит сде
 UTM-метки из ссылки автоматически попадают в письмо с заявкой. Пример ссылки для объявления:
 
 ```
-https://prazske-drevo-partneri.pages.dev/?utm_source=facebook&utm_medium=paid&utm_campaign=vlastnici-lesu&utm_content=video-harvestor
+https://prazske-drevo-pro-partnery.pages.dev/?utm_source=facebook&utm_medium=paid&utm_campaign=vlastnici-lesu&utm_content=video-harvestor
 ```
 
 Удобнее задать метки один раз в Ads Manager: в объявлении → **Tracking → URL parameters → Build a URL parameter** и вставить:
