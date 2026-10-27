@@ -17,6 +17,19 @@ const PHONE_LINK = "tel:+420702875037";
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  /* ---------- Logo v hlavičce: znovu načíst stránku a začít nahoře ---------- */
+  // UTM parametry z reklamy v adrese zůstanou, odstraní se jen #kotva a výsledky formuláře
+  document.querySelector(".brand").addEventListener("click", (e) => {
+    e.preventDefault();
+    const q = new URLSearchParams(window.location.search);
+    q.delete("odeslano");
+    q.delete("chyba");
+    const search = q.toString();
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    window.location.replace(window.location.pathname + (search ? "?" + search : ""));
+  });
+
   /* ---------- Burger menu ---------- */
   const burger = document.querySelector(".burger");
   const nav = document.getElementById("nav");
