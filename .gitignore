@@ -10,3 +10,6 @@ Thumbs.db
 desktop.ini
 *.tmp
 node_modules/
+
+# Рекламные креативы (не публиковать на сайте)
+reklama/
