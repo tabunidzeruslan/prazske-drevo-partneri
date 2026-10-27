@@ -550,3 +550,27 @@ body.has-cookie .mobile-bar, body.has-cookie .to-top { display: none; }
   .cookie__actions { grid-column: 1; grid-row: auto; margin-top: 8px; }
   .cookie__actions .btn { flex: 1; }
 }
+
+/* ===== Tall tile with forest photo ===== */
+.tile--tall { position: relative; overflow: hidden; isolation: isolate; }
+.tile__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .6s ease; }
+.tile--tall::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(13, 69, 66, .15) 0%, rgba(13, 69, 66, .35) 35%, rgba(13, 69, 66, .92) 68%, var(--teal) 100%);
+}
+.tile--tall:hover .tile__bg { transform: scale(1.04); }
+.tile--tall h3 { text-shadow: 0 1px 12px rgba(0, 0, 0, .25); }
+@media (max-width: 960px) { .tile--tall { min-height: 340px; } }
+@media (max-width: 600px) { .tile--tall { min-height: 380px; } }
+@media (max-width: 640px) { .tile--wide { align-items: flex-start; } }
+
+/* two tall photo tiles at the sides, two plain tiles stacked in the middle */
+.bento { grid-auto-flow: dense; }
+@media (min-width: 961px) {
+  .bento { grid-auto-rows: minmax(250px, auto); }
+}
+@media (min-width: 961px) {
+  .bento { grid-template-rows: minmax(250px, auto) minmax(250px, auto) auto; }
+  .tile--wide { padding-block: 32px; }
+}
+@media (max-width: 640px) { .tile--wide h3, .tile--wide p { align-self: auto; } }
