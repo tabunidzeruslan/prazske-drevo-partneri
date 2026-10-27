@@ -91,7 +91,6 @@ const PHONE_LINK = "tel:+420702875037";
   form.elements.stranka.value = window.location.href.split("#")[0];
 
   const rules = {
-    name: (v) => (v.trim().length < 3 ? "Vyplňte prosím jméno a příjmení." : ""),
     phone: (v) => {
       const digits = v.replace(/[^\d]/g, "");
       if (!v.trim()) return "Vyplňte prosím telefon, abychom vám mohli zavolat.";
@@ -103,7 +102,7 @@ const PHONE_LINK = "tel:+420702875037";
     obec: (v) => (v.trim().length < 2 ? "Napište prosím obec nebo lokalitu lesa." : ""),
     souhlas: (_, el) => (!el.checked ? "Pro odeslání potřebujeme váš souhlas se zpracováním údajů." : ""),
   };
-  const errIds = { name: "f-name-err", phone: "f-phone-err", email: "f-email-err", obec: "f-place-err", souhlas: "f-consent-err" };
+  const errIds = { phone: "f-phone-err", email: "f-email-err", obec: "f-place-err", souhlas: "f-consent-err" };
 
   const validateField = (name) => {
     const el = form.elements[name];
