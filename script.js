@@ -93,10 +93,24 @@ const PHONE_LINK = "tel:+420702875037";
     status.innerHTML = `Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám rovnou zavolejte na <a href="${PHONE_LINK}">${PHONE_DISPLAY}</a>.`;
   };
 
-  // Návrat po odeslání bez JavaScriptu (funkce přesměruje zpět s ?odeslano nebo ?chyba)
-  if (params.has("odeslano")) {
+  // Vyskakovací okno „Poptávka byla úspěšně odeslána“
+  const done = document.getElementById("lead-done");
+  const showDone = () => {
     form.hidden = true;
     success.hidden = false;
+    if (done && typeof done.showModal === "function") done.showModal();
+    else success.focus();
+  };
+  if (done) {
+    const closeDone = () => done.close();
+    done.querySelectorAll("[data-close-done]").forEach((b) => b.addEventListener("click", closeDone));
+    done.addEventListener("click", (e) => { if (e.target === done) closeDone(); });
+    done.addEventListener("close", () => success.focus());
+  }
+
+  // Návrat po odeslání bez JavaScriptu (funkce přesměruje zpět s ?odeslano nebo ?chyba)
+  if (params.has("odeslano")) {
+    showDone();
   } else if (params.has("chyba")) {
     showError();
   }
@@ -165,9 +179,7 @@ const PHONE_LINK = "tel:+420702875037";
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.success) throw new Error(json.message || "HTTP " + res.status);
 
-      form.hidden = true;
-      success.hidden = false;
-      success.focus();
+      showDone();
       onLeadSuccess();
     } catch (err) {
       console.error("Odeslání formuláře selhalo:", err);
