@@ -1,7 +1,7 @@
 // Poptávky odesílá serverová funkce functions/api/lead.js do Telegramu (viz README.md)
 const LEAD_ENDPOINT = "/api/lead";
 
-const PHONE_DISPLAY = "+420 292 332 301";
+const PHONE_DISPLAY = "292 332 301";
 const PHONE_LINK = "tel:+420292332301";
 
 (function () {
