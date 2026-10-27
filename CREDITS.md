@@ -13,7 +13,7 @@
 | `assets/img/sunny-forest*.webp` | Солнечный лес (фон финального блока) | Eduard Galitskiy | https://unsplash.com/photos/lmrFoiIxmHE |
 | `assets/img/timber-pile.webp` | Светлые брёвна на фоне леса (плитка «Za dřevo vám zaplatíme») | Nicola Pavan | https://unsplash.com/photos/LkFNUzrpDVw |
 | `assets/img/sunlit-forest.webp` | Лес в лучах солнца (плитка «Uklidíme po sobě») | Ana Kračman | https://unsplash.com/photos/_S_qxNm6zn0 |
-| `assets/img/regrowth.webp` | Молодые ёлочки на старом пне (карточка «Les pro další generace») | Robert Mertl | https://unsplash.com/photos/ZHqt1CvqEgw |
+| `assets/img/regrowth.webp` | Молодые сосны под взрослым лесом (карточка «Les pro další generace») | Alex Belogub | https://unsplash.com/photos/SIXwWblOzOw |
 
 `assets/img/og-image.jpg` собрана из фото `hero` и логотипа.
 
