@@ -508,3 +508,19 @@ form button[type="submit"] { padding: 6px 20px; }
 .footer__site .i { width: 13px; height: 13px; stroke-width: 2.5; }
 .footer a.footer__brand:hover { text-decoration: none; }
 .brand:hover .brand__logo, .footer__brand:hover .footer__logo { opacity: .85; }
+
+/* ===== Back to top ===== */
+.to-top {
+  position: fixed; right: 20px; bottom: 24px; z-index: 55;
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px;
+  background: var(--teal); color: var(--lime); box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .25s ease, transform .25s ease, visibility 0s .25s, background-color .2s;
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; transition: opacity .25s ease, transform .25s ease, background-color .2s; }
+.to-top:hover { background: var(--teal-2); }
+.to-top .i { width: 24px; height: 24px; stroke-width: 2.5; }
+@media (max-width: 760px) {
+  /* above the sticky contact bar */
+  .to-top { right: 14px; bottom: calc(86px + env(safe-area-inset-bottom)); width: 46px; height: 46px; }
+}

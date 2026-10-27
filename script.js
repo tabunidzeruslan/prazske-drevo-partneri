@@ -17,17 +17,15 @@ const PHONE_LINK = "tel:+420702875037";
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* ---------- Logo v hlavičce: znovu načíst stránku a začít nahoře ---------- */
-  // UTM parametry z reklamy v adrese zůstanou, odstraní se jen #kotva a výsledky formuláře
-  document.querySelector(".brand").addEventListener("click", (e) => {
+  /* ---------- Tlačítko „zpět nahoru“ ---------- */
+  const toTop = document.querySelector(".to-top");
+  const onScrollTop = () => toTop.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8);
+  onScrollTop();
+  window.addEventListener("scroll", onScrollTop, { passive: true });
+  toTop.addEventListener("click", (e) => {
     e.preventDefault();
-    const q = new URLSearchParams(window.location.search);
-    q.delete("odeslano");
-    q.delete("chyba");
-    const search = q.toString();
-    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
-    window.location.replace(window.location.pathname + (search ? "?" + search : ""));
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    history.replaceState(null, "", window.location.pathname + window.location.search);
   });
 
   /* ---------- Burger menu ---------- */

@@ -28,7 +28,7 @@
   <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/img/hero.webp" imagesrcset="assets/img/hero-760.webp 760w, assets/img/hero-1200.webp 1200w, assets/img/hero.webp 1920w" imagesizes="(min-width: 1200px) 1160px, calc(100vw - 40px)" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
   <script>document.documentElement.classList.add("js")</script>
 
   <script type="application/ld+json">
@@ -66,7 +66,7 @@
   <!-- Header -->
   <header class="header" id="top">
     <div class="container header__inner">
-      <a class="brand" href="./" aria-label="Pražské Dřevo pro partnery – obnovit stránku a přejít nahoru">
+      <a class="brand" href="https://prazske-drevo.cz/" target="_blank" rel="noopener" aria-label="Pražské Dřevo – web společnosti (otevře se v novém okně)">
         <img class="brand__logo" src="assets/logo.png" alt="Pražské Dřevo" width="207" height="100">
         <span class="brand__badge">pro partnery</span>
       </a>
@@ -413,6 +413,11 @@
     </div>
   </footer>
 
+  <!-- Zpět nahoru -->
+  <a class="to-top" href="#top" aria-label="Zpět nahoru">
+    <svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
   <!-- Mobile sticky bar -->
   <div class="mobile-bar" aria-label="Rychlý kontakt">
     <a class="btn btn--primary" href="#poptavka">Nabídnout les</a>
@@ -458,6 +463,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=6" defer></script>
+  <script src="script.js?v=7" defer></script>
 </body>
 </html>
