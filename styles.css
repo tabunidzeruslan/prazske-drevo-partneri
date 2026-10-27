@@ -524,3 +524,9 @@ form button[type="submit"] { padding: 6px 20px; }
   /* above the sticky contact bar */
   .to-top { right: 14px; bottom: calc(86px + env(safe-area-inset-bottom)); width: 46px; height: 46px; }
 }
+
+/* Phones: hero buttons duplicate the sticky bar at the bottom, so hide them */
+@media (max-width: 760px) {
+  .hero__actions { display: none; }
+  .hero__lead { margin-bottom: 28px; }
+}
