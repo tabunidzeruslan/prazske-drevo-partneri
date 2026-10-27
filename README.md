@@ -134,18 +134,25 @@ utm_source={{site_source_name}}&utm_medium=paid&utm_campaign={{campaign.name}}&u
 
 ---
 
-## 6. Meta Pixel (позже)
+## 6. Meta Pixel и cookie-баннер
 
-1. В Meta Events Manager создайте пиксель и скопируйте его базовый код.
-2. Вставьте код в `index.html` перед строкой `</head>`.
-3. В `script.js` в самом конце найдите функцию `onLeadSuccess()` и замените её содержимое:
+Всё уже встроено, нужно только вписать ID пикселя.
+
+1. Meta Events Manager (https://business.facebook.com/events_manager2) → **Источники данных** → ваш пиксель (или **Подключить данные → Интернет → Meta Pixel**, если его ещё нет).
+2. Скопируйте **ID пикселя** — число из 15–16 цифр.
+3. В `script.js` вверху впишите его:
    ```js
-   function onLeadSuccess() {
-     if (window.fbq) fbq('track', 'Lead');
-   }
+   const META_PIXEL_ID = "123456789012345";
    ```
-   Она вызывается только после успешной отправки формы.
-4. **Важно (GDPR):** пиксель ставит cookie, поэтому в Чехии/ЕС перед ним нужен cookie-баннер с согласием, а в «Zásady ochrany osobních údajů» — абзац о Meta Pixel. Это отдельная задача.
+4. Опубликуйте (коммит в GitHub).
+
+Как это работает (GDPR):
+- При первом заходе внизу появляется cookie-плашка «Používáme cookies» с кнопками **Odmítnout / Přijmout**.
+- Пиксель загружается **только после «Přijmout»**. Без согласия на Meta ничего не уходит.
+- После согласия отправляются события `PageView` и `Lead` (успешная заявка).
+- Выбор запоминается на 12 месяцев; изменить его можно ссылкой **«Nastavení cookies»** в подвале.
+- В «Zásady ochrany osobních údajů» есть раздел «Cookies a Meta Pixel».
+- Пока `META_PIXEL_ID` пустой, ни плашки, ни пикселя на сайте нет.
 
 ---
 

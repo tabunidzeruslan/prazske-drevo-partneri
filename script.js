@@ -4,6 +4,9 @@ const LEAD_ENDPOINT = "/api/lead";
 const PHONE_DISPLAY = "292 332 301";
 const PHONE_LINK = "tel:+420292332301";
 
+// ID pixelu z Meta Events Manager (jen čísla). Prázdné = pixel ani cookie lišta se nezobrazí.
+const META_PIXEL_ID = "";
+
 (function () {
   "use strict";
 
@@ -214,10 +217,64 @@ const PHONE_LINK = "tel:+420292332301";
   });
 })();
 
+/* ---------- Cookie lišta + Meta Pixel (načte se až po souhlasu) ---------- */
+const CONSENT_KEY = "pd-cookie-consent";
+const CONSENT_DAYS = 365;
+
+function readConsent() {
+  try {
+    const c = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
+    if (c && Date.now() - c.at < CONSENT_DAYS * 864e5) return c.value;
+  } catch (e) { /* úložiště nedostupné */ }
+  return null;
+}
+
+function saveConsent(value) {
+  try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ value, at: Date.now() })); } catch (e) { /* nic */ }
+}
+
+function loadMetaPixel() {
+  if (window.fbq || !META_PIXEL_ID) return;
+  /* oficiální kód Meta Pixel */
+  !function (f, b, e, v, n, t, s) {
+    if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+    t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+  }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  fbq("init", META_PIXEL_ID);
+  fbq("track", "PageView");
+}
+
+(function () {
+  const banner = document.getElementById("cookie");
+  if (!META_PIXEL_ID) {
+    document.querySelectorAll(".cookie-link").forEach((el) => el.remove());
+    return;
+  }
+
+  const show = () => { banner.hidden = false; document.body.classList.add("has-cookie"); };
+  const hide = () => { banner.hidden = true; document.body.classList.remove("has-cookie"); };
+
+  banner.querySelectorAll("[data-cookie]").forEach((btn) => btn.addEventListener("click", () => {
+    const value = btn.dataset.cookie;
+    const before = readConsent();
+    saveConsent(value);
+    hide();
+    if (value === "granted") loadMetaPixel();
+    else if (before === "granted") window.location.reload(); // odvolání souhlasu: pixel z paměti stránky odstraní jen nové načtení
+  }));
+
+  document.querySelectorAll("[data-open-cookies]").forEach((b) => b.addEventListener("click", show));
+
+  const consent = readConsent();
+  if (consent === "granted") loadMetaPixel();
+  else if (consent === null) show();
+})();
+
 /**
  * Volá se po úspěšném odeslání poptávky.
- * Sem můžete později přidat Meta Pixel:  if (window.fbq) fbq('track', 'Lead');
+ * Meta Pixel existuje jen tehdy, když návštěvník souhlasil s cookies.
  */
 function onLeadSuccess() {
-  // zatím nic
+  if (window.fbq) fbq("track", "Lead");
 }
