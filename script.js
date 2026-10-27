@@ -1,5 +1,5 @@
-// Klíč z https://web3forms.com (viz README.md)
-const WEB3FORMS_ACCESS_KEY = "VLOZTE_SVUJ_KLIC";
+// Poptávky odesílá serverová funkce functions/api/lead.js do Telegramu (viz README.md)
+const LEAD_ENDPOINT = "/api/lead";
 
 const PHONE_DISPLAY = "+420 702 875 037";
 const PHONE_LINK = "tel:+420702875037";
@@ -88,7 +88,6 @@ const PHONE_LINK = "tel:+420702875037";
     const v = params.get(key);
     if (v) form.elements[key].value = v.slice(0, 500);
   });
-  form.elements.stranka.value = window.location.href.split("#")[0];
 
   const rules = {
     phone: (v) => {
@@ -142,14 +141,12 @@ const PHONE_LINK = "tel:+420702875037";
 
     const data = Object.fromEntries(new FormData(form).entries());
     delete data.botcheck;
-    data.access_key = WEB3FORMS_ACCESS_KEY;
-    data.subject = `Nová poptávka – les: ${data.obec.trim()}`;
     data.souhlas = "ano";
     Object.keys(data).forEach((k) => { if (data[k] === "") delete data[k]; });
 
     setLoading(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(LEAD_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data),
