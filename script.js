@@ -86,8 +86,23 @@ const PHONE_LINK = "tel:+420702875037";
   const params = new URLSearchParams(window.location.search);
   ["utm_source", "utm_medium", "utm_campaign", "utm_content", "fbclid"].forEach((key) => {
     const v = params.get(key);
-    if (v) form.elements[key].value = v.slice(0, 500);
+    if (v && form.elements[key]) form.elements[key].value = v.slice(0, 500);
   });
+
+  const showError = () => {
+    status.innerHTML = `Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám rovnou zavolejte na <a href="${PHONE_LINK}">${PHONE_DISPLAY}</a>.`;
+  };
+
+  // Návrat po odeslání bez JavaScriptu (funkce přesměruje zpět s ?odeslano nebo ?chyba)
+  if (params.has("odeslano")) {
+    form.hidden = true;
+    success.hidden = false;
+  } else if (params.has("chyba")) {
+    showError();
+  }
+  if (params.has("odeslano") || params.has("chyba")) {
+    history.replaceState(null, "", window.location.pathname + "#poptavka");
+  }
 
   const rules = {
     phone: (v) => {
@@ -122,10 +137,6 @@ const PHONE_LINK = "tel:+420702875037";
     submitBtn.disabled = on;
     submitBtn.classList.toggle("is-loading", on);
     submitBtn.querySelector(".btn__label").textContent = on ? "Odesílám…" : "Odeslat poptávku";
-  };
-
-  const showError = () => {
-    status.innerHTML = `Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám rovnou zavolejte na <a href="${PHONE_LINK}">${PHONE_DISPLAY}</a>.`;
   };
 
   form.addEventListener("submit", async (e) => {

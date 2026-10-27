@@ -35,26 +35,31 @@ export function buildMessage(d) {
 }
 
 export async function onRequestPost({ request, env }) {
+  // Formulář posílá JSON z script.js; bez JavaScriptu přijde klasický POST formuláře.
+  const isForm = !(request.headers.get("Content-Type") || "").includes("application/json");
+  const back = (ok) => Response.redirect(new URL(ok ? "/?odeslano=1#poptavka" : "/?chyba=1#poptavka", request.url), 303);
+  const reply = (data, status = 200) => (isForm ? back(data.success) : json(data, status));
+
   let d;
   try {
-    d = await request.json();
+    d = isForm ? Object.fromEntries(await request.formData()) : await request.json();
   } catch {
-    return json({ success: false, message: "Bad request" }, 400);
+    return reply({ success: false, message: "Bad request" }, 400);
   }
 
   // honeypot: bot vyplnil skryté pole → tváříme se, že je vše v pořádku
-  if (d.botcheck) return json({ success: true });
+  if (d.botcheck) return reply({ success: true });
 
   const digits = clean(d.phone).replace(/\D/g, "");
   if (digits.length < 9 || digits.length > 15 || clean(d.obec).length < 2 || d.souhlas !== "ano") {
-    return json({ success: false, message: "Invalid data" }, 422);
+    return reply({ success: false, message: "Invalid data" }, 422);
   }
 
   const token = env.TELEGRAM_BOT_TOKEN;
   const chats = String(env.TELEGRAM_CHAT_ID || "").split(",").map((s) => s.trim()).filter(Boolean);
   if (!token || !chats.length) {
     console.error("Chybí TELEGRAM_BOT_TOKEN nebo TELEGRAM_CHAT_ID");
-    return json({ success: false, message: "Not configured" }, 500);
+    return reply({ success: false, message: "Not configured" }, 500);
   }
 
   const text = buildMessage(d);
@@ -72,7 +77,7 @@ export async function onRequestPost({ request, env }) {
 
   if (!results.some(Boolean)) {
     console.error("Telegram odmítl zprávu pro všechny chaty");
-    return json({ success: false, message: "Telegram error" }, 502);
+    return reply({ success: false, message: "Telegram error" }, 502);
   }
-  return json({ success: true });
+  return reply({ success: true });
 }
