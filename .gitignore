@@ -1,0 +1,12 @@
+# Рабочие файлы (не публиковать на сайте)
+prompt-claude-code.md
+/logo.png
+design-reference.png
+.claude/
+
+# Системный мусор
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+node_modules/
