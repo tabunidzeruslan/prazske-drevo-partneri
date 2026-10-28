@@ -3,6 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Consent Mode v2: měření je vypnuté, dokud návštěvník nesouhlasí v cookie liště -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    (function () {
+      var granted = false;
+      try {
+        var c = JSON.parse(localStorage.getItem("pd-cookie-consent") || "null");
+        granted = !!(c && c.value === "granted" && Date.now() - c.at < 365 * 864e5);
+      } catch (e) {}
+      var v = granted ? "granted" : "denied";
+      gtag("consent", "default", {
+        ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v,
+        functionality_storage: "granted", security_storage: "granted", wait_for_update: 500
+      });
+    })();
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WRVNBVLC');</script>
+  <!-- End Google Tag Manager -->
   <title>Výkup dřeva a péče o les | Pražské Dřevo pro partnery</title>
   <meta name="description" content="Vlastníte les v Praze nebo ve Středních Čechách? Pražské Dřevo převezme péči o váš les, těžbu provede vlastní moderní technikou, za dřevo vám zaplatí a po sobě uklidí.">
   <meta name="theme-color" content="#0D4542">
@@ -61,6 +86,10 @@
   </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRVNBVLC"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
   <!-- Header -->
@@ -427,7 +456,7 @@
   <section class="cookie" id="cookie" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
     <div class="cookie__box">
       <p class="cookie__title" id="cookie-title">Používáme cookies</p>
-      <p class="cookie__text" id="cookie-text">Se&nbsp;vaším souhlasem použijeme marketingové cookies (Meta Pixel), abychom mohli měřit a&nbsp;zlepšovat naši reklamu na Facebooku a&nbsp;Instagramu. Bez souhlasu web funguje normálně. <button type="button" class="link-btn" data-open-privacy>Více informací</button></p>
+      <p class="cookie__text" id="cookie-text">Se&nbsp;vaším souhlasem použijeme analytické a&nbsp;marketingové cookies (Google, Meta Pixel), abychom věděli, jak web používáte, a&nbsp;mohli zlepšovat web i&nbsp;naši reklamu. Bez souhlasu web funguje normálně. <button type="button" class="link-btn" data-open-privacy>Více informací</button></p>
       <div class="cookie__actions">
         <button type="button" class="btn btn--outline" data-cookie="denied">Odmítnout</button>
         <button type="button" class="btn btn--primary" data-cookie="granted">Přijmout</button>
@@ -477,8 +506,8 @@
       <p>Výhradně za účelem vyřízení vaší poptávky, tedy abychom vás mohli kontaktovat a probrat možnou spolupráci. Údaje nepředáváme třetím stranám pro marketingové účely. Poptávka se po odeslání doručí našim pracovníkům prostřednictvím aplikace Telegram.</p>
       <h3>Jak dlouho je uchováváme</h3>
       <p>Nejdéle 2 roky od odeslání poptávky, poté je smažeme. Pokud spolupráce vznikne, řídí se další zpracování smluvním vztahem.</p>
-      <h3>Cookies a Meta Pixel</h3>
-      <p>Bez vašeho souhlasu nepoužíváme žádné marketingové ani analytické cookies. Pokud v cookie liště zvolíte „Přijmout“, načte se nástroj Meta Pixel společnosti Meta Platforms Ireland Ltd., který ukládá cookies a předává společnosti Meta údaje o návštěvě stránky a odeslání poptávky. Slouží k měření a zlepšování naší reklamy na Facebooku a Instagramu. Souhlas můžete kdykoli odvolat odkazem „Nastavení cookies“ v patičce webu. Vaši volbu si pamatujeme v úložišti vašeho prohlížeče po dobu 12 měsíců.</p>
+      <h3>Cookies, měření návštěvnosti a Meta Pixel</h3>
+      <p>Bez vašeho souhlasu nepoužíváme žádné marketingové ani analytické cookies. Web využívá Google Tag Manager společnosti Google Ireland Ltd.; měřicí nástroje v něm (např. Google Analytics) ukládají cookies a sbírají údaje o tom, jak web používáte (navštívené části stránky, kliknutí, typ zařízení), až po vašem souhlasu. Pokud v cookie liště zvolíte „Přijmout“, načte se také nástroj Meta Pixel společnosti Meta Platforms Ireland Ltd., který ukládá cookies a předává společnosti Meta údaje o návštěvě stránky a odeslání poptávky. Slouží k měření a zlepšování naší reklamy na Facebooku a Instagramu. Souhlas můžete kdykoli odvolat odkazem „Nastavení cookies“ v patičce webu. Vaši volbu si pamatujeme v úložišti vašeho prohlížeče po dobu 12 měsíců.</p>
       <h3>Vaše práva</h3>
       <p>Podle nařízení GDPR máte právo na přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování, přenositelnost a právo odvolat souhlas. Máte také právo podat stížnost u Úřadu pro ochranu osobních údajů (www.uoou.cz).</p>
       <h3>Kontakt</h3>
@@ -487,6 +516,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=12" defer></script>
+  <script src="script.js?v=13" defer></script>
 </body>
 </html>

@@ -233,6 +233,14 @@ function saveConsent(value) {
   try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ value, at: Date.now() })); } catch (e) { /* nic */ }
 }
 
+// Google Consent Mode v2 (výchozí stav nastavuje inline skript v <head>)
+function updateGoogleConsent(value) {
+  if (typeof window.gtag !== "function") return;
+  const v = value === "granted" ? "granted" : "denied";
+  gtag("consent", "update", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+  window.dataLayer.push({ event: "cookie_consent_update", cookie_consent: v });
+}
+
 function loadMetaPixel() {
   if (window.fbq || !META_PIXEL_ID) return;
   /* oficiální kód Meta Pixel */
@@ -260,6 +268,7 @@ function loadMetaPixel() {
     const before = readConsent();
     saveConsent(value);
     hide();
+    updateGoogleConsent(value);
     if (value === "granted") loadMetaPixel();
     else if (before === "granted") window.location.reload(); // odvolání souhlasu: pixel z paměti stránky odstraní jen nové načtení
   }));
@@ -273,8 +282,12 @@ function loadMetaPixel() {
 
 /**
  * Volá se po úspěšném odeslání poptávky.
- * Meta Pixel existuje jen tehdy, když návštěvník souhlasil s cookies.
+ * Meta Pixel existuje jen tehdy, když návštěvník souhlasil s cookies;
+ * GTM událost se posílá vždy, Google tagy ji samy zpracují podle souhlasu.
  */
 function onLeadSuccess() {
   if (window.fbq) fbq("track", "Lead");
+  // událost pro Google Tag Manager (spouštěč „Vlastní událost“ = generate_lead)
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "generate_lead", form_id: "poptavka" });
 }
