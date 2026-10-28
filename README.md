@@ -161,3 +161,19 @@ utm_source={{site_source_name}}&utm_medium=paid&utm_campaign={{campaign.name}}&u
 - Тексты — прямо в `index.html` (ищите нужную фразу через Ctrl+F).
 - Телефон и e-mail встречаются в нескольких местах `index.html` и в начале `script.js` — меняйте через «Найти и заменить».
 - Фото лежат в `assets/img/` в двух размерах (обычный и `-800`/`-760`/`-1200` для телефонов). При замене сохраните то же имя файла и формат WebP.
+
+---
+
+## 7. Google Tag Manager (GTM-WRVNBVLC)
+
+Контейнер GTM уже подключён (в `<head>` и `<noscript>` после `<body>`), вместе с **Google Consent Mode v2**:
+- до нажатия «Přijmout» в cookie-плашке все `*_storage` = `denied`; Google-теги (GA4, Google Ads) работают в режиме без cookies;
+- после «Přijmout» сайт отправляет `gtag('consent','update', …granted)` и событие `cookie_consent_update`;
+- после успешной заявки в `dataLayer` уходит событие **`generate_lead`** (`form_id: "poptavka"`).
+
+Что настроить в GTM (https://tagmanager.google.com):
+1. **GA4:** тег «Google tag» с вашим ID `G-…`, триггер «Initialization – All Pages».
+2. **Заявки в GA4:** тег «GA4 Event», имя события `generate_lead`, триггер «Custom Event» = `generate_lead`.
+3. **Карта кликов / записи сессий** (например Microsoft Clarity): в настройках тега → *Consent settings* → «Require additional consent» → `analytics_storage`. Иначе тег будет работать без согласия.
+4. **Meta Pixel в GTM не добавляйте** — он уже стоит на сайте; иначе события будут считаться дважды.
+5. Нажмите **Submit / Publish** — без публикации теги не работают.
